@@ -182,7 +182,9 @@ def score(
     # Aggregate: each signal contributes 0.25, capped at 1.0 (matches JS spirit:
     # JS uses ``min(1, len / 3)`` over 3 signals; we have 7, scale to 4).
     raw = min(1.0, len(signals) / 4)
-    return PoisonScore(score=round(raw * 10000) / 10000, signals=signals, severity=_severity_for(raw))
+    return PoisonScore(
+        score=round(raw * 10000) / 10000, signals=signals, severity=_severity_for(raw)
+    )
 
 
 def filter_poisoned(
